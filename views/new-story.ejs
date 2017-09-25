@@ -11,9 +11,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.7.1/summernote.js"></script>
 </head>
 <body>
-
+  <div id="wrapper">
+    <% include partials/sidebarMenu.ejs %>
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
   <div class="row">
+
       <div class="container">
+
           <blockquote>
             <h3>Hey <code><%=session.username%></code>, you are all set to create your story. Just provide us following details</h3>
             <ol>
@@ -33,6 +38,9 @@
           </blockquote>
       </div>
     </div>
+  </div>
+</div>
+
 <br/><br/>
 
     <div class="row">
@@ -83,6 +91,8 @@
             </div>
         </div>
     </div>
+    </div>
+      <% include partials/jsIncludes.ejs %>
   <br/><br/>
 
   <script>

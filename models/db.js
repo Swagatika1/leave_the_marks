@@ -56,7 +56,7 @@ userSchema.methods.comparePassword = function(candidatePassword, cb){
   console.log("salt "+salt);
   hashedpassword = crypto.pbkdf2Sync(candidatePassword, salt.toString('hex'), 10, 512, 'sha512');
   console.log("hashedpassword = " + hashedpassword.toString('hex'));
-  newpassword = salt1+'|'+hashedpassword.toString('hex');
+  newpassword = salt +'|'+hashedpassword.toString('hex');
   console.log("newpassword = " +newpassword);
   console.log("dbpassword = " +user.password);
   if (user.password  === newpassword){
@@ -67,6 +67,23 @@ userSchema.methods.comparePassword = function(candidatePassword, cb){
     return cb(new Error("Invalid password"), false);
   }
 }
+
+// Stories Schema
+
+var storiesSchema = new mongoose.Schema({
+  author:String,
+  title: {type: String,unique:true},
+  created_at:{type:Date,default:Date.now},
+  summary:String,
+  content: {type: String},
+  imageLink:String,
+  comments:[{body:String,commented_by:String,date:Date}]
+  
+});
+
+
+
+mongoose.model( 'Story', storiesSchema,'stories');
 
 
 

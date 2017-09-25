@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var routes=require('./routes/routes.js');
 var user=require('./routes/user.js');
+var story = require('./routes/story.js');
 //var db=require('./models/db.js');
 
 
@@ -24,6 +25,10 @@ app.post('/newUser',user.doCreate);
 app.post('/authenticate',user.authenticate);
 //app.get('/registrationSuccessful',user.regisrationSuccessful);
 app.get('/login',routes.login);
+app.get('/new-story',routes.newStory);
+app.post('/add-story',story.addStory);
+app.get('/stories',story.stories);
+app.get('/logout',routes.logout);
 
 
 

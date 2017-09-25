@@ -46,11 +46,13 @@ exports.authenticate=function(req,res){
     //if(password === user.password){
     user.comparePassword(password, function(err, equal){
       if(err == null){
-        res.render("login");
+        req.session.username = user.username;
+        req.session.loggedIn = true;
+        res.render('new-story',{session:req.session});
         console.log("Login Passed");
       }
       else{
-        res.render("register");
+        res.render("login");
         console.log("Login Failed");
       }
     });
